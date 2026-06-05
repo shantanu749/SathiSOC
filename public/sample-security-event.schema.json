@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SathiSOC Lite Security Event",
+  "type": "object",
+  "required": [
+    "id",
+    "eventType",
+    "category",
+    "source",
+    "severity",
+    "status",
+    "actor",
+    "assignedTo",
+    "ipAddress",
+    "userAgent",
+    "timestamp",
+    "lastUpdated",
+    "confidence",
+    "riskScore",
+    "summary",
+    "evidence",
+    "recommendation"
+  ],
+  "properties": {
+    "id": { "type": "string", "examples": ["evt-1001"] },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "failed_login",
+        "admin_login",
+        "password_reset_burst",
+        "signup_spike",
+        "role_change",
+        "contact_form_spam",
+        "suspicious_user_agent",
+        "api_error_spike",
+        "unusual_ip_activity",
+        "possible_bruteforce"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": ["authentication", "account_abuse", "api_security", "admin_activity", "spam"]
+    },
+    "source": {
+      "type": "string",
+      "enum": ["web_app", "auth_service", "api_gateway", "admin_panel", "public_form"]
+    },
+    "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+    "status": { "type": "string", "enum": ["new", "reviewing", "resolved", "false_positive"] },
+    "actor": { "type": "string", "examples": ["demo-user"] },
+    "assignedTo": { "type": "string", "examples": ["Unassigned"] },
+    "ipAddress": { "type": "string", "examples": ["192.168.1.10"] },
+    "userAgent": { "type": "string", "examples": ["Chrome on Windows"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "lastUpdated": { "type": "string", "format": "date-time" },
+    "confidence": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "riskScore": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "summary": { "type": "string" },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "recommendation": { "type": "string" },
+    "resolutionReason": { "type": "string" }
+  },
+  "additionalProperties": false
+}
